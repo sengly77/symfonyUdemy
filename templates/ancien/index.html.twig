@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <ul>
+        {% for language_courant in languages %}
+
+            <li><h1><a href="{{ path('show', {language:language_courant}) }}">{{ language_courant }}</a></h1></li>
+
+
+        {% endfor %}
+    </ul>
+
+{% endblock %}

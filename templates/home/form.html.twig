@@ -1,0 +1,11 @@
+{{ form_start(form, {'attr' : {'novalidate' : 'novalidate'}}) }}
+
+                    {{ form_label(form.model, 'Modèle :', {label_attr: {'class' : 'form_model'}}) }}
+                    {{ form_widget(form.model) }}
+<span style="color: red"><strong>{{ form_errors(form.model) }}</strong></span>
+
+{{ form_label(form.price) }}
+                    {{ form_widget(form.price) }}  {#{"required":false} pour mettre required false#}
+<span style="color: red"><strong>{{ form_errors(form.price) }}</strong></span>
+
+{{ form_row(form.image) }}
