@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
@@ -47,9 +48,15 @@ class Car
      */
     private $keywords;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\City", inversedBy="cars")
+     */
+    private $cities;
+
     public function __construct()
     {
         $this->keywords = new ArrayCollection();
+        $this->cities = new ArrayCollection();
     }
 
     public function getKeywords()
@@ -57,7 +64,7 @@ class Car
         return $this->keywords;
     }
 
-    public function addKeywords(Keyword $keyword)
+    public function addKeyword(Keyword $keyword)
     {
         $this->keywords->add($keyword);
         $keyword->setCar($this);
@@ -111,6 +118,32 @@ class Car
     public function setImage($image): void
     {
         $this->image = $image;
+    }
+
+    /**
+     * @return Collection|City[]
+     */
+    public function getCities(): Collection
+    {
+        return $this->cities;
+    }
+
+    public function addCity(City $city): self
+    {
+        if (!$this->cities->contains($city)) {
+            $this->cities[] = $city;
+        }
+
+        return $this;
+    }
+
+    public function removeCity(City $city): self
+    {
+        if ($this->cities->contains($city)) {
+            $this->cities->removeElement($city);
+        }
+
+        return $this;
     }
 
 

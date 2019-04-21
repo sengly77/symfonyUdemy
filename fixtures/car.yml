@@ -1,0 +1,12 @@
+App\Entity\Car:
+  car_1:
+    model: C5
+    price: 3500
+    cities: ['@paris','@lyon']
+  car_2:
+    model: X5
+    price: 4500
+    cities: ['@bordeaux','@lille']
+  car_3:
+    model: 508
+    price: 3300
